@@ -12,7 +12,7 @@ load_dotenv(dotenv_path)
 email = os.environ.get("email")
 password = os.environ.get("password")
 
-class UserBehavior(TaskSet):
+class SampleTrafficTask(TaskSet):
     def on_start(self):
         """ on_start is called when a Locust start before any task is scheduled """
         self.login()
@@ -33,6 +33,6 @@ class UserBehavior(TaskSet):
 
 class WebsiteUser(HttpLocust):
     host = "https://moments-bucketlist.herokuapp.com"
-    task_set = UserBehavior
+    task_set = SampleTrafficTask
     min_wait = 5000
     max_wait = 9000
