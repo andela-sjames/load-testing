@@ -1,7 +1,4 @@
-# script used againt vagrant set up on bookshelf git repo
-# url to repo: https://github.com/andela-sjames/bookshelf
-
-# tutorial reference: loading ... 
+# initial script used against my sample project hosted on heroku
 
 import os
 
@@ -30,14 +27,14 @@ class SampleTrafficTask(TaskSet):
         self.client.get("/")
 
     @task(1)
-    def search_for_book_that_contains_string_space(self):
-        self.client.get("/?q=space")
+    def profile(self):
+        self.client.get("/bucketlist/samuel/")
 
-    def search_for_book_that_contains_string_man(self):
-        self.client.get("/?q=man")
+    def single_bucketlist(self):
+        self.client.get("/bucketlist/view/49/")
 
 class WebsiteUser(HttpLocust):
-    host = "http://bookshelf.example"
+    host = "https://moments-bucketlist.herokuapp.com"
     task_set = SampleTrafficTask
     min_wait = 5000
     max_wait = 9000
