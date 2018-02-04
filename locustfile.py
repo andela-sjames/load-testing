@@ -1,29 +1,9 @@
-# script used againt vagrant set up on bookshelf git repo
+# script used against vagrant set up on bookshelf git repo
 # url to repo: https://github.com/andela-sjames/bookshelf
-
-# tutorial reference: loading ... 
-
-import os
-
-from os.path import join, dirname
-from dotenv import load_dotenv
 
 from locust import HttpLocust, TaskSet, task
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
-
-email = os.environ.get("email")
-password = os.environ.get("password")
-
 class SampleTrafficTask(TaskSet):
-    def on_start(self):
-        """ on_start is called when a Locust start before any task is scheduled """
-        self.login()
-
-    def login(self):
-        self.client.post("/login", {"email":email, "password":password})
 
     @task(2)
     def index(self):
